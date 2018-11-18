@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <base href="/">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" sizes="32x32" href="icons/icon.png">
+  <!-- Main CSS file -->
+  <link rel="stylesheet" href="css/responsive.css">
+  <title>Restaurant Reviews</title>
+</head>
+
+<body>
+  <header role="banner">
+    <nav>
+      <h1><a href="/">Restaurant Reviews</a></h1>
+    </nav>
+  </header>
+
+  <main id="maincontent">
+    <section id="map-container" role="application" aria-label="restaurants map">
+      <div id="map"></div>
+    </section>
+    <section id="filter-container" role="region" aria-labelledby="filter-header">
+      <div class="filter-options">
+        <h2 id="filter-header">Filter Results</h2>
+        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+          <option value="all">All Neighborhoods</option>
+        </select>
+        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+          <option value="all">All Cuisines</option>
+        </select>
+      </div>
+      <ul id="restaurants-list" role="region" aria-label="restaurants"></ul>
+    </section>
+  </main>
+
+  <!-- Beginning scripts -->
+  <!-- Database helpers -->
+  <script type="text/javascript" src="js/dbhelper.js"></script>
+  <!-- Main javascript file -->
+  <script type="text/javascript" src="js/main.js"></script>
+  <!-- Register service worker -->
+  <script type="text/javascript" src="js/safety-worker.js"></script>
+  <!-- Google Maps -->
+  <script>
+    var map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: -34.397,
+          lng: 150.644
+        },
+        zoom: 8
+      });
+      updateRestaurants();
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIdVRq_3QF3GkV2hfzsEVHJRoFWJW7HOw&libraries=places&callback=initMap"></script>
+  <!-- End scripts -->
+
+
+  <footer id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+
+</body>
+
+</html>
